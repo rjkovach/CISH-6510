@@ -19,5 +19,6 @@ namespace CISH6510.AddressBook.Model
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string Suffix { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
     }
 }
