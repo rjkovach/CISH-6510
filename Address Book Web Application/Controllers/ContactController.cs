@@ -29,13 +29,33 @@ namespace CISH6510.AddressBook.Web.Controllers
 		}
 
 		// POST api/<controller>
-		public void Post([FromBody]string value)
+		public void Post([FromBody]Contact value)
 		{
+			using (var db = new AddressBookEntities())
+			{
+				db.Contacts.Add(value);
+				db.SaveChanges();
+			}
 		}
 
 		// PUT api/<controller>/5
-		public void Put(int id, [FromBody]string value)
+		public void Put(int id, [FromBody]Contact value)
 		{
+			using (var db = new AddressBookEntities())
+			{
+				var contact = db.Contacts.Find(id);
+
+				// Update existing contact
+				if (contact != null)
+				{
+					contact.FirstName = value.FirstName;
+					contact.MiddleName = value.MiddleName;
+					contact.LastName = value.LastName;
+					contact.Suffix = value.Suffix;
+					contact.DOB = value.DOB;
+					db.SaveChanges();
+				}
+			}
 		}
 
 		// DELETE api/<controller>/5
