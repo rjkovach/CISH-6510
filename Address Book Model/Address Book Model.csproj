@@ -61,6 +61,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Address Book Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Address.cs">
+      <DependentUpon>Address Book Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Contact.cs">
       <DependentUpon>Address Book Model.tt</DependentUpon>
     </Compile>

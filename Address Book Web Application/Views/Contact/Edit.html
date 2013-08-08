@@ -1,0 +1,34 @@
+﻿<header>
+	<h2>{{ contact.FullName() }}</h2>
+</header>
+<section>
+	<header>
+		<h3>Name</h3>
+	</header>
+	<input id="FirstName" ng-model="contact.FirstName" placeholder="First Name" required />
+	<input id="MiddleName" ng-model="contact.MiddleName" placeholder="Middle Name" />
+	<input id="LastName" ng-model="contact.LastName" placeholder="Last Name" required />
+	<input id="Suffix" ng-model="contact.Suffix" placeholder="Suffix" />
+</section>
+<section>
+	<header>
+		<h3>Addresses</h3>
+	</header>
+	<table>
+		<tr ng-repeat="address in contact.Addresses">
+			<th><input ng-model="address.Type" placeholder="Type" required /></th>
+			<td>
+				<input ng-model="address.CompanyName" placeholder="Company Name" class="block" />
+				<input ng-model="address.StreetAddress" placeholder="Street Address" class="block" required />
+				<input ng-model="address.Suite" placeholder="Suite" class="block" />
+				<input ng-model="address.City" placeholder="City" required />
+				<input ng-model="address.State" placeholder="State" />
+				<input ng-model="address.Zip" placeholder="Zip" required ng-pattern="/\d{5}(-\d{4})?/" />
+			</td>
+		</tr>
+	</table>
+</section>
+<section>
+	<button ng-click="save()">Save</button>
+	<button ng-click="cancel()">Cancel</button>
+</section>

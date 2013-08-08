@@ -24,17 +24,20 @@ namespace CISH6510.AddressBook.Web.Controllers
 		{
 			using (var db = new AddressBookEntities())
 			{
-				return db.Contacts.Find(id);
+				return db.Contacts.Include("Addresses").SingleOrDefault(c => c.ContactId == id);
 			}
 		}
 
 		// POST api/<controller>
-		public void Post([FromBody]Contact value)
+		public HttpResponseMessage Post([FromBody]Contact value)
 		{
 			using (var db = new AddressBookEntities())
 			{
-				db.Contacts.Add(value);
+				var contact = db.Contacts.Add(value);
 				db.SaveChanges();
+				var response = Request.CreateResponse(HttpStatusCode.Created, contact);
+				response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = contact.ContactId }));
+				return response;
 			}
 		}
 

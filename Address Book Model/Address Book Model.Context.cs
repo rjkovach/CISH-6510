@@ -18,6 +18,8 @@ namespace CISH6510.AddressBook.Model
         public AddressBookEntities()
             : base("name=AddressBookEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
+    		this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -26,5 +28,6 @@ namespace CISH6510.AddressBook.Model
         }
     
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Address> Addresses { get; set; }
     }
 }

@@ -6,8 +6,27 @@
     <edmx:StorageModels>
     <Schema Namespace="CISH6510.AddressBook.Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="CISH6510AddressBookModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="CISH6510.AddressBook.Model.Store.Addresses" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Contacts" EntityType="CISH6510.AddressBook.Model.Store.Contacts" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Addresses_Contacts" Association="CISH6510.AddressBook.Model.Store.FK_Addresses_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StreetAddress" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Suite" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="State" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="Zip" Type="char" Nullable="false" MaxLength="10" />
+        </EntityType>
         <EntityType Name="Contacts">
           <Key>
             <PropertyRef Name="ContactId" />
@@ -19,12 +38,29 @@
           <Property Name="Suffix" Type="nvarchar" MaxLength="50" />
           <Property Name="DOB" Type="date" />
         </EntityType>
+        <Association Name="FK_Addresses_Contacts">
+          <End Role="Contacts" Type="CISH6510.AddressBook.Model.Store.Contacts" Multiplicity="1" />
+          <End Role="Addresses" Type="CISH6510.AddressBook.Model.Store.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CISH6510.AddressBook.Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="AddressBookEntities" p1:LazyLoadingEnabled="true">
+        <EntityContainer Name="AddressBookEntities" p1:LazyLoadingEnabled="false">
           <EntitySet Name="Contacts" EntityType="CISH6510.AddressBook.Model.Contact" />
+          <EntitySet Name="Addresses" EntityType="CISH6510.AddressBook.Model.Address" />
+          <AssociationSet Name="FK_Addresses_Contacts" Association="CISH6510.AddressBook.Model.FK_Addresses_Contacts">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contact">
           <Key>
@@ -36,7 +72,34 @@
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Suffix" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Type="DateTime" Name="DOB" Precision="0" />
+          <NavigationProperty Name="Addresses" Relationship="CISH6510.AddressBook.Model.FK_Addresses_Contacts" FromRole="Contact" ToRole="Address" />
         </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Type="Int32" Name="AddressId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ContactId" Nullable="false" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CompanyName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StreetAddress" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Suite" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Zip" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Addresses_Contacts">
+          <End Type="CISH6510.AddressBook.Model.Contact" Role="Contact" Multiplicity="1" />
+          <End Type="CISH6510.AddressBook.Model.Address" Role="Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -52,6 +115,21 @@
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Suffix" ColumnName="Suffix" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="CISH6510.AddressBook.Model.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Suite" ColumnName="Suite" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

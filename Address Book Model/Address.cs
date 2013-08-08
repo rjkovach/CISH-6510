@@ -12,20 +12,16 @@ namespace CISH6510.AddressBook.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Contact
+    public partial class Address
     {
-        public Contact()
-        {
-            this.Addresses = new HashSet<Address>();
-        }
-    
+        public int AddressId { get; set; }
         public int ContactId { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
-        public string Suffix { get; set; }
-        public Nullable<System.DateTime> DOB { get; set; }
-    
-        public virtual ICollection<Address> Addresses { get; set; }
+        public string Type { get; set; }
+        public string CompanyName { get; set; }
+        public string StreetAddress { get; set; }
+        public string Suite { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
     }
 }

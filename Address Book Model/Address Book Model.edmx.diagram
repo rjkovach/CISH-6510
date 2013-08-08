@@ -5,7 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cf5c8f0c86fe4a3d995a0abfad46c996" Name="Diagram1">
-        <EntityTypeShape EntityType="CISH6510.AddressBook.Model.Contact" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CISH6510.AddressBook.Model.Contact" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CISH6510.AddressBook.Model.Address" Width="1.5" PointX="3" PointY="1" />
+        <AssociationConnector Association="CISH6510.AddressBook.Model.FK_Addresses_Contacts" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
