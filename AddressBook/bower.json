@@ -1,0 +1,26 @@
+{
+  "name": "CISH6510.AddressBook",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.4.9",
+    "bootstrap": "^3.3.6",
+    "angular-resource": "^1.4.9",
+    "angular-route": "^1.4.9"
+  },
+  "homepage": "https://github.com/rjkovach/CISH-6510",
+  "authors": [
+    "rjkovach"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "wwwroot/lib",
+    "test",
+    "tests"
+  ]
+}

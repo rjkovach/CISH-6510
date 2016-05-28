@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>CISH-6510 Address Book</title>
+	<link href="/css/addressbook.css" rel="stylesheet" />
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+	<script src="/scripts/addressbookapp.js"></script>
+	<script src="/scripts/contactlistcontroller.js"></script>
+	<script src="/scripts/contactdetailcontroller.js"></script>
+	<script src="/scripts/contactaddcontroller.js"></script>
+	<script src="/scripts/contacteditcontroller.js"></script>
+	<script src="/scripts/contactservice.js"></script>
+</head>
+<body ng-app="AddressBookApp">
+	<header>
+		<h1>CISH-6510 Address Book</h1>
+	</header>
+	<div ng-controller="ContactListController">
+		<div id="ContactList">
+			<button ng-click="add()">Add</button>
+			<ol>
+				<li ng-repeat="contact in contacts" ng-click="open(contact)" ng-class="isOpenClass(contact)">{{ contact.SortName() }}</li>
+			</ol>
+		</div>
+		<article id="ContactDetails" ng-view></article>
+	</div>
+</body>
+</html>
