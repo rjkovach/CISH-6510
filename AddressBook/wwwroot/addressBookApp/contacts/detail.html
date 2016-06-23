@@ -1,0 +1,19 @@
+<header>
+	<h2>{{ vm.contact.FirstName }} {{ vm.contact.LastName }}</h2>
+</header>
+<section>
+	<header>
+		<h3>Addresses</h3>
+	</header>
+	<table>
+		<tr ng-repeat="address in vm.contact.Addresses">
+			<th>{{ address.Type }}</th>
+			<td>
+				<span>{{ address.CompanyName }}</span>
+				<span>{{ address.StreetAddress }}</span>
+				<span>{{ address.Suite }}</span>
+				<span>{{ address.City }}, {{ address.State }} {{ address.Zip }}</span>
+			</td>
+		</tr>
+	</table>
+</section>
