@@ -34,7 +34,7 @@
 
 		function open(contact) {
 			vm.opened = contact;
-			$location.path("/contacts/" + contact.ContactId);
+			$location.path("/contacts/" + contact.contactId);
 		}
 
 		function close() {

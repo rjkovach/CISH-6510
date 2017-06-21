@@ -6,7 +6,9 @@
     "tasks": [
         {
             "taskName": "build",
-            "args": [],
+            "args": [
+                "${workspaceRoot}/AddressBook.csproj"
+            ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
         }

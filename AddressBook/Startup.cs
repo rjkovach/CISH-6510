@@ -41,8 +41,8 @@ namespace CISH6510.AddressBook
             // Add framework services.
 			services.AddDbContext<AddressBookContext>(options => options.UseSqlite(connection));
 			
-            services.AddMvc();
-                // .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
+            services.AddMvc()
+                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

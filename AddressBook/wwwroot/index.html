@@ -13,7 +13,7 @@
 	<div ng-controller="ContactsController as vm">
 		<div id="ContactList">
 			<ol>
-				<li ng-repeat="contact in vm.contacts" ng-click="vm.toggle(contact)" ng-class="vm.isOpenClass(contact)">{{ contact.LastName }}, {{ contact.FirstName }}</li>
+				<li ng-repeat="contact in vm.contacts" ng-click="vm.toggle(contact)" ng-class="vm.isOpenClass(contact)">{{ contact.lastName }}, {{ contact.firstName }}</li>
 			</ol>
 		</div>
 		<article id="ContactDetails" ng-view></article>

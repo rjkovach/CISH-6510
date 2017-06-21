@@ -1,10 +1,10 @@
-using System.IO;
+﻿using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
 namespace CISH6510.AddressBook
 {
-    public class Program
+	public class Program
     {
         public static void Main(string[] args)
         {

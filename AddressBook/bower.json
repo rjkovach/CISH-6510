@@ -2,11 +2,11 @@
   "name": "CISH6510.AddressBook",
   "private": true,
   "dependencies": {
-    "angular": "^1.4.9",
-    "bootstrap": "^3.3.6",
-    "angular-resource": "^1.4.9",
-    "angular-route": "^1.4.9",
-    "angular-sanitize": "^1.4.9"
+    "angular": "1.6.4",
+    "angular-resource": "1.6.4",
+    "angular-route": "1.6.4",
+    "angular-sanitize": "1.6.4",
+    "bootstrap": "3.3.7"
   },
   "homepage": "https://github.com/rjkovach/CISH-6510",
   "authors": [
