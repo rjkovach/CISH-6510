@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace CISH6510.AddressBook.Models
 {
 	public partial class Address
@@ -12,6 +14,7 @@ namespace CISH6510.AddressBook.Models
 		public string State { get; set; }
 		public string Zip { get; set; }
 		
+		[JsonIgnore]
 		public Contact Contact { get; set; }
 	}
 }
