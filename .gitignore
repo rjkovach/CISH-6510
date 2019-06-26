@@ -343,3 +343,5 @@ healthchecksdb
 # VSCode
 .vscode/
 .ionide/
+
+**/wwwroot/lib
